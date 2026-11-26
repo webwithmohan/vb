@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>My Vocabulary</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:wght@500;700;800&family=Source+Serif+4:ital,wght@0,400;0,600;1,400&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+  <header class="top">
+    <div class="top-inner">
+      <h1 class="brand">My Vocabulary</h1>
+      <div class="top-actions">
+        <span id="adminBadge" class="badge" hidden>Admin mode</span>
+        <button id="loginBtn" class="btn ghost">Admin login</button>
+        <button id="logoutBtn" class="btn ghost" hidden>Log out</button>
+      </div>
+    </div>
+  </header>
+
+  <main class="wrap">
+
+    <!-- Admin only: add / edit form (shown after login) -->
+    <section id="adminPanel" class="panel" hidden>
+      <h2 id="formTitle">Add a new word</h2>
+      <form id="wordForm" autocomplete="off">
+        <div class="row">
+          <label>Word
+            <input id="fWord" type="text" required maxlength="60" placeholder="e.g. Resilient">
+          </label>
+          <label>Part of speech
+            <select id="fPos">
+              <option>noun</option>
+              <option>verb</option>
+              <option>adjective</option>
+              <option>adverb</option>
+              <option>phrase</option>
+              <option>other</option>
+            </select>
+          </label>
+        </div>
+        <label>Meaning
+          <textarea id="fMeaning" required rows="2" maxlength="300" placeholder="What does it mean?"></textarea>
+        </label>
+        <label>Example sentence
+          <textarea id="fExample" rows="2" maxlength="300" placeholder="Use it in a sentence"></textarea>
+        </label>
+        <div class="form-actions">
+          <button type="submit" id="saveBtn" class="btn primary">Add word</button>
+          <button type="button" id="cancelBtn" class="btn ghost" hidden>Cancel edit</button>
+        </div>
+      </form>
+    </section>
+
+    <section class="tools">
+      <input id="search" type="search" placeholder="Search words or meanings" aria-label="Search words">
+      <div id="letters" class="letters" aria-label="Filter by first letter"></div>
+    </section>
+
+    <p id="count" class="count"></p>
+    <section id="list" class="list" aria-live="polite"></section>
+    <p id="empty" class="empty" hidden>No words found.</p>
+  </main>
+
+  <!-- Login dialog -->
+  <dialog id="loginDialog">
+    <form id="loginForm" method="dialog" class="login">
+      <h2>Admin login</h2>
+      <label>Email
+        <input id="lEmail" type="email" required autocomplete="username">
+      </label>
+      <label>Password
+        <input id="lPass" type="password" required autocomplete="current-password">
+      </label>
+      <p id="loginError" class="error" hidden></p>
+      <div class="form-actions">
+        <button type="submit" class="btn primary">Log in</button>
+        <button type="button" id="loginClose" class="btn ghost">Close</button>
+      </div>
+    </form>
+  </dialog>
+
+  <div id="toast" class="toast" role="status"></div>
+
+  <script type="module" src="app.js"></script>
+</body>
+</html>
