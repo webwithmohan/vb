@@ -23,8 +23,8 @@ import {
 
 const app = initializeApp(firebaseConfig);
 const db = getFirestore(app);
-const auth = getAuth();
-const wordsRe = collection(db, "words");
+const auth = getAuth(app);
+const wordsRef = collection(db, "words");
 
 // ==========================================================
 // 2. ELEMENTS + STATE
@@ -119,7 +119,7 @@ el.form.addEventListener("submit", async (e) => {
       await updateDoc(doc(db, "words", editingId), data);
       toast("Changes saved");
     } else {
-      addDoc(wordsRef, { ...data, createdAt: serverTimestamp() });
+      await addDoc(wordsRef, { ...data, createdAt: serverTimestamp() });
       toast("Word added");
     }
     resetForm();
