@@ -119,7 +119,7 @@ el.form.addEventListener("submit", async (e) => {
       await updateDoc(doc(db, "words", editingId), data);
       toast("Changes saved");
     } else {
-      await addDoc(wordsRef, { ...data, createdAt: serverTimestamp() });
+      addDoc(wordsRef, { ...data, createdAt: serverTimestamp() });
       toast("Word added");
     }
     resetForm();
